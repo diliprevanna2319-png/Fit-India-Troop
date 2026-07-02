@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0b" />
+
+  <title>Fit India Troop — Premium Gym, CrossFit & Recovery in Tumakuru</title>
+  <meta name="description" content="Fit India Troop is Tumakuru's premium fitness & performance center — world-class gym, CrossFit, personal training and sauna & steam recovery. Train. Recover. Perform." />
+  <meta name="keywords" content="gym in Tumakuru, best gym in Tumakuru, CrossFit Tumakuru, personal training Tumakuru, sauna gym Tumakuru, steam bath gym Tumakuru, body transformation Tumakuru, functional training, weight loss gym Tumakuru" />
+  <meta name="author" content="Fit India Troop" />
+  <link rel="canonical" href="https://www.fitindiatroop.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fit India Troop — Premium Gym, CrossFit & Recovery in Tumakuru" />
+  <meta property="og:description" content="World-class gym, CrossFit training & premium recovery — all under one roof in Tumakuru." />
+  <meta property="og:image" content="assets/images/gym-1.jpg" />
+  <meta property="og:site_name" content="Fit India Troop" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" href="assets/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HealthClub",
+    "name": "Fit India Troop",
+    "description": "Premium fitness & performance center offering gym, CrossFit, personal training and recovery facilities.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Tumakuru", "addressRegion": "Karnataka", "addressCountry": "IN" },
+    "telephone": "+918971749222",
+    "openingHours": "Mo-Sa",
+    "priceRange": "₹₹",
+    "sameAs": []
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============ LOADER ============ -->
+  <div id="loader" class="loader">
+    <div class="loader__inner">
+      <img class="loader__logo" src="assets/logo.png" alt="Fit India Troop" />
+      <div class="loader__bar"><span id="loaderFill" class="loader__fill"></span></div>
+      <div class="loader__pct"><span id="loaderPct">0</span>%</div>
+      <p class="loader__tag">TRAIN · RECOVER · PERFORM</p>
+    </div>
+  </div>
+
+  <!-- ============ PROGRESS + CURSOR ============ -->
+  <div id="scrollProgress" class="scroll-progress"></div>
+  <div id="cursorGlow" class="cursor-glow"></div>
+
+  <!-- ============ NAV ============ -->
+  <header id="nav" class="nav">
+    <a href="#hero" class="nav__brand" aria-label="Fit India Troop home"><img class="logo--mark" src="assets/logo-mark.png" alt="Fit India Troop" /></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#fitness">Fitness</a>
+      <a href="#crossfit">CrossFit</a>
+      <a href="#recovery">Recovery</a>
+      <a href="#membership">Membership</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#membership" class="btn btn--sm btn--solid nav__cta">Become a Member</a>
+    <button id="navToggle" class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero">
+    <canvas id="heroCanvas" class="hero__canvas"></canvas>
+    <div class="hero__vignette"></div>
+
+    <div class="hero__words" id="heroWords" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Tumakuru's Premium Fitness &amp; Performance Center</p>
+      <h1 class="hero__title">
+        <span>TRANSFORM</span>
+        <span>YOUR BODY.</span>
+        <span class="grad">BECOME UNSTOPPABLE.</span>
+      </h1>
+      <p class="hero__sub">World-class gym, CrossFit training &amp; premium recovery — everything you need under one roof. Build strength. Transform your body. Join Fit India Troop.</p>
+      <div class="hero__cta">
+        <a href="#membership" class="btn btn--solid">Become a Member</a>
+        <a href="#contact" class="btn btn--ghost">Book a Visit</a>
+      </div>
+    </div>
+
+    <a href="#stats" class="hero__scroll" aria-label="Scroll down">
+      <span class="hero__mouse"><span></span></span>
+      <em>Scroll to enter</em>
+    </a>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- ============ STATS ============ -->
+  <section id="stats" class="stats">
+    <div class="stats__grid" id="statsGrid"></div>
+  </section>
+
+  <!-- ============ ONE ROOF / WHY ============ -->
+  <section id="why" class="section why">
+    <div class="section__head reveal">
+      <span class="kicker">Why Fit India Troop</span>
+      <h2>Everything You Need <span class="grad">Under One Roof</span></h2>
+      <p>Forget switching between fitness centers. Strength training, functional fitness, CrossFit, personal coaching and recovery — one premium destination.</p>
+    </div>
+    <div class="why__grid" id="whyGrid"></div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section about">
+    <div class="about__grid">
+      <div class="about__media reveal">
+        <div class="about__img" data-img="aboutPrimary"></div>
+        <div class="about__img about__img--sm" data-img="aboutSecondary"></div>
+        <div class="about__badge">8+ yrs<br /><small>of results</small></div>
+      </div>
+      <div class="about__body">
+        <span class="kicker reveal">About Us</span>
+        <h2 class="reveal">Built For People Who Want <span class="grad">Real Results</span></h2>
+        <p class="reveal">Fit India Troop is one of Tumakuru's fastest-growing premium fitness destinations. Our mission is simple — to inspire healthier lifestyles through expert coaching, quality equipment and a motivating community.</p>
+        <p class="reveal">We believe fitness isn't about temporary transformations. It's about building confidence, discipline, strength and a healthier future. Every member is guided by experienced trainers focused on proper technique, consistency and long-term progress.</p>
+        <div class="about__mv">
+          <div class="mv reveal"><h4>Our Mission</h4><p>Inspire healthier lifestyles through expert coaching &amp; community.</p></div>
+          <div class="mv reveal"><h4>Our Vision</h4><p>Build confidence, discipline and strength that lasts a lifetime.</p></div>
+        </div>
+        <a href="#membership" class="btn btn--solid reveal">Start Your Journey</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FITNESS ============ -->
+  <section id="fitness" class="section split split--fitness">
+    <div class="split__text">
+      <span class="kicker reveal">01 — Fitness</span>
+      <h2 class="reveal">Premium <span class="grad">Gym Training</span></h2>
+      <p class="reveal">Modern, commercial-grade equipment designed for every fitness level — from your very first session to advanced performance work.</p>
+      <ul class="chips reveal">
+        <li>Strength Training</li><li>Muscle Building</li><li>Weight Loss</li><li>Functional Training</li>
+        <li>Body Transformation</li><li>Core &amp; Mobility</li><li>Beginner Programs</li><li>Advanced Programs</li>
+      </ul>
+      <div class="benefits reveal">
+        <span>Increase Strength</span><span>Improve Stamina</span><span>Burn Fat</span>
+        <span>Gain Muscle</span><span>Boost Energy</span><span>Build Healthy Habits</span>
+      </div>
+    </div>
+    <div class="split__visual reveal"><div class="split__img" data-gallery-idx="0"></div></div>
+  </section>
+
+  <!-- ============ CROSSFIT ============ -->
+  <section id="crossfit" class="section split split--rev split--crossfit">
+    <div class="split__text">
+      <span class="kicker reveal">02 — CrossFit</span>
+      <h2 class="reveal">Push Beyond <span class="grad">Your Limits</span></h2>
+      <p class="reveal">Strength, endurance, agility, speed and conditioning in one high-intensity training experience. Our coaches scale every workout to your ability.</p>
+      <ul class="chips reveal">
+        <li>Olympic Lifting</li><li>HIIT Workouts</li><li>Functional Movements</li><li>Strength Circuits</li>
+        <li>Endurance Training</li><li>Conditioning</li><li>Group Coaching</li><li>Performance Tracking</li>
+      </ul>
+    </div>
+    <div class="split__visual reveal"><div class="split__img" data-gallery-idx="1"></div></div>
+  </section>
+
+  <!-- ============ RECOVERY ============ -->
+  <section id="recovery" class="section split split--rev recovery">
+    <div class="split__text">
+      <span class="kicker reveal">03 — Recovery Zone</span>
+      <h2 class="reveal">Recover <span class="grad">Stronger</span></h2>
+      <p class="reveal">Recovery is as important as training. Our premium steam room and sauna reduce muscle soreness, improve circulation and prepare your body for the next session.</p>
+      <ul class="chips reveal">
+        <li>Steam Room</li><li>Sauna</li><li>Reduced Muscle Fatigue</li>
+        <li>Stress Relief</li><li>Better Circulation</li><li>Deep Relaxation</li>
+      </ul>
+    </div>
+    <div class="split__visual reveal"><div class="split__img" data-gallery-idx="2"></div></div>
+  </section>
+
+  <!-- ============ PROGRAMS ============ -->
+  <section id="programs" class="section programs">
+    <div class="section__head reveal">
+      <span class="kicker">Training Programs</span>
+      <h2>Find The <span class="grad">Right Program</span></h2>
+      <p>Fat loss, muscle gain, athletic performance or self-defence — we've got the right path for you.</p>
+    </div>
+    <div class="programs__grid" id="programsGrid"></div>
+  </section>
+
+  <!-- ============ MEMBERSHIP ============ -->
+  <section id="membership" class="section membership">
+    <div class="section__head reveal">
+      <span class="kicker">Membership Plans</span>
+      <h2>Choose Your <span class="grad">Fitness Journey</span></h2>
+      <p>Transparent pricing, no hidden fees. Pick the plan that fits your commitment.</p>
+    </div>
+    <div class="plans" id="plansGrid"></div>
+    <p class="plans__note" id="plansNote"></p>
+    <div class="plans__extra" id="plansExtra"></div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="stories" class="section stories">
+    <div class="section__head reveal">
+      <span class="kicker">Success Stories</span>
+      <h2>Real Members. <span class="grad">Real Results.</span></h2>
+      <p>Every transformation begins with a decision.</p>
+    </div>
+    <div class="stories__viewport"><div class="stories__track" id="storiesTrack"></div></div>
+    <div class="stories__dots" id="storiesDots"></div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="section gallery">
+    <div class="section__head reveal">
+      <span class="kicker">Gallery</span>
+      <h2>Experience The <span class="grad">Energy</span></h2>
+      <p>Gym floor · CrossFit · recovery · transformations · community.</p>
+    </div>
+    <div class="gallery__grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="section faq">
+    <div class="section__head reveal">
+      <span class="kicker">FAQ</span>
+      <h2>Questions? <span class="grad">Answered.</span></h2>
+    </div>
+    <div class="faq__list" id="faqList"></div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="section contact">
+    <div class="contact__grid">
+      <div class="contact__info">
+        <span class="kicker reveal">Contact</span>
+        <h2 class="reveal">Start Your Fitness <span class="grad">Journey Today</span></h2>
+        <p class="reveal">Visit us, call us, or drop a message — we'll help you pick the perfect program.</p>
+
+        <ul class="contact__list">
+          <li class="reveal"><span>📍 Location</span><a data-cfg="mapLink" target="_blank" rel="noopener" id="cAddress"></a></li>
+          <li class="reveal"><span>📞 Call</span><a data-cfg="phone1" id="cPhone1"></a> · <a data-cfg="phone2" id="cPhone2"></a></li>
+          <li class="reveal"><span>✉️ Email</span><a data-cfg="email" id="cEmail"></a></li>
+          <li class="reveal"><span>🅿️ Parking</span><em id="cParking"></em></li>
+        </ul>
+
+        <div class="hours reveal">
+          <h4>Business Hours</h4>
+          <ul id="hoursList"></ul>
+        </div>
+
+        <div class="contact__actions reveal">
+          <a class="btn btn--solid" data-cfg="whatsapp" id="cWhats">WhatsApp Us</a>
+          <a class="btn btn--ghost" data-cfg="call" id="cCall">Call Now</a>
+        </div>
+        <div class="socials reveal" id="socials"></div>
+      </div>
+
+      <form class="contact__form reveal" id="contactForm" novalidate>
+        <div class="field"><label>Name</label><input name="name" required /><small></small></div>
+        <div class="field"><label>Phone Number</label><input name="phone" required inputmode="tel" /><small></small></div>
+        <div class="field"><label>Email</label><input name="email" type="email" required /><small></small></div>
+        <div class="field">
+          <label>Fitness Goal</label>
+          <select name="goal">
+            <option>Weight / Fat Loss</option><option>Muscle Gain</option><option>General Fitness</option>
+            <option>Sports Performance</option><option>Strength Training</option><option>Recovery</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preferred Program</label>
+          <select name="program">
+            <option>Gym Training</option><option>CrossFit</option><option>Functional Training</option>
+            <option>Personal Training</option><option>Women's Fitness</option>
+          </select>
+        </div>
+        <div class="field field--full"><label>Message</label><textarea name="message" rows="3"></textarea></div>
+        <button type="submit" class="btn btn--solid btn--full">Join Now</button>
+        <p class="form__success" id="formSuccess">✔ Thank you! We'll reach out to you shortly.</p>
+      </form>
+    </div>
+
+    <div class="map reveal">
+      <iframe id="mapFrame" title="Fit India Troop location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="map__actions">
+        <a class="btn btn--sm btn--ghost" data-cfg="mapOpen" id="mapOpen" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn btn--sm btn--ghost" data-cfg="directions" id="mapDir" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img class="logo--foot" src="assets/logo.png" alt="Fit India Troop" />
+        <p>Tumakuru's premium fitness &amp; performance center. Train. Recover. Perform. Repeat.</p>
+        <div class="socials" id="socialsFoot"></div>
+      </div>
+      <div class="footer__col"><h5>Explore</h5><a href="#about">About</a><a href="#fitness">Fitness</a><a href="#crossfit">CrossFit</a><a href="#stories">Success Stories</a></div>
+      <div class="footer__col"><h5>Train</h5><a href="#programs">Programs</a><a href="#recovery">Recovery</a><a href="#stories">Success Stories</a><a href="#membership">Membership</a></div>
+      <div class="footer__col"><h5>More</h5><a href="#gallery">Gallery</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a data-cfg="mapLink" id="fMap" target="_blank" rel="noopener">Location</a></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Fit India Troop. All rights reserved.</span>
+      <span class="footer__legal"><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox"><button class="lightbox__close" id="lbClose">✕</button><img id="lbImg" alt="" /></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
