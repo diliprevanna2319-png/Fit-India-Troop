@@ -4,7 +4,6 @@
    All content is hydrated from js/config.js.
    ============================================================================= */
 import { CONFIG } from './config.js';
-import { initHero } from './scene.js';
 
 const $  = (s,c=document)=>c.querySelector(s);
 const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
@@ -208,31 +207,8 @@ function heroWords(){
   node.style.transition='opacity .3s ease';
 }
 
-/* =========================== SMOOTH SCROLL + GSAP =========================== */
-/* Loads Lenis + GSAP/ScrollTrigger (progressive). Returns { lenis, gsap, ST }. */
-async function setupSmoothScroll(){
-  let gsap=null, ST=null, lenis=null;
-  try{
-    gsap=(await import('https://esm.sh/gsap@3.12.5')).default;
-    ST=(await import('https://esm.sh/gsap@3.12.5/ScrollTrigger')).default;
-    gsap.registerPlugin(ST);
-  }catch(e){ console.warn('GSAP unavailable — using CSS/IO fallbacks.'); }
-  try{
-    const Lenis=(await import('https://esm.sh/lenis@1.1.13')).default;
-    lenis=new Lenis({ duration:1.15, easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)), smoothWheel:true });
-    if(gsap && ST){
-      lenis.on('scroll', ST.update);
-      gsap.ticker.add(t=>lenis.raf(t*1000));
-      gsap.ticker.lagSmoothing(0);
-    }else{
-      const raf=t=>{ lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
-    }
-  }catch(e){ /* native scroll fallback */ }
-  return { lenis, gsap, ST };
-}
-
 /* nav scrolled state, progress bar, mobile toggle, smooth anchor links */
-function navUI(lenis){
+function navUI(){
   const nav=$('#nav'), toggle=$('#navToggle'), links=$('#navLinks'), prog=$('#scrollProgress');
   const onScroll=()=>{
     nav.classList.toggle('scrolled', scrollY>40);
@@ -246,63 +222,8 @@ function navUI(lenis){
     a.addEventListener('click',e=>{
       const id=a.getAttribute('href'); if(id.length<2) return;
       const t=$(id); if(!t) return; e.preventDefault();
-      if(lenis) lenis.scrollTo(t,{offset:-70}); else t.scrollIntoView({behavior:'smooth'});
+      t.scrollIntoView({behavior:'smooth'});
     });
-  });
-}
-
-/* =========================== SCROLL-DRIVEN HERO (LAT PULLDOWN) =========================== */
-function setupHeroScroll(hero, {gsap, ST}){
-  if(!hero) return;
-  const heroEl=$('#hero');
-  if(gsap && ST){
-    ST.create({
-      trigger:heroEl, start:'top top', end:'+=140%', pin:true, scrub:1,
-      invalidateOnRefresh:true,
-      onUpdate:self=>hero.setPulldown(self.progress),
-    });
-    // cinematic: hero copy drifts up + fades as the rep completes
-    gsap.to('.hero__content', { opacity:0.12, y:-50, ease:'none',
-      scrollTrigger:{ trigger:heroEl, start:'top top', end:'+=110%', scrub:1 } });
-    gsap.to('.hero__scroll', { opacity:0, ease:'none',
-      scrollTrigger:{ trigger:heroEl, start:'top top', end:'+=40%', scrub:true } });
-  }else{
-    // fallback: drive pulldown by how far the hero has scrolled past the top (no pin)
-    const drive=()=>{ const r=heroEl.getBoundingClientRect();
-      const p=Math.min(Math.max(-r.top/(r.height||innerHeight),0),1); hero.setPulldown(p); };
-    addEventListener('scroll',drive,{passive:true}); drive();
-  }
-}
-
-/* =========================== PREMIUM SCROLL EFFECTS =========================== */
-function setupParallax({gsap, ST}){
-  if(!gsap || !ST) return;
-  // subtle depth parallax on section imagery
-  $$('.split__img').forEach(img=>{
-    gsap.fromTo(img,{ y:50 },{ y:-50, ease:'none',
-      scrollTrigger:{ trigger:img.closest('.split')||img, start:'top bottom', end:'bottom top', scrub:true } });
-  });
-  // soft scale-in on cards/plans as they enter (complements the CSS reveal)
-  ['.pcard','.plan','.tile','.gimg'].forEach(sel=>{
-    gsap.utils.toArray(sel).forEach(n=>{
-      gsap.from(n,{ scale:0.94, ease:'power2.out', duration:.6,
-        scrollTrigger:{ trigger:n, start:'top 92%', toggleActions:'play none none none' } });
-    });
-  });
-  ST.refresh();
-}
-
-/* lightweight 3D tilt micro-interaction (desktop only) */
-function setupTilt(){
-  if(matchMedia('(hover:none)').matches) return;
-  $$('.plan, .pcard').forEach(card=>{
-    card.style.transformStyle='preserve-3d';
-    card.addEventListener('pointermove',e=>{
-      const r=card.getBoundingClientRect();
-      const rx=((e.clientY-r.top)/r.height-0.5)*-6, ry=((e.clientX-r.left)/r.width-0.5)*6;
-      card.style.transform=`perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
-    });
-    card.addEventListener('pointerleave',()=>{ card.style.transform=''; });
   });
 }
 
@@ -331,7 +252,7 @@ function contactForm(){
 }
 
 /* =========================== BOOT =========================== */
-(async function boot(){
+(function boot(){
   document.body.classList.add('locked');
   hydrate();
   runLoader();
@@ -339,17 +260,5 @@ function contactForm(){
   heroWords();
   cursorGlow();
   contactForm();
-  setupTilt();
-
-  const libs = await setupSmoothScroll();      // Lenis + GSAP/ScrollTrigger
-  navUI(libs.lenis);
-  setupParallax(libs);
-
-  const hero = await initHero($('#heroCanvas')); // 3D lat-pulldown rig
-  setupHeroScroll(hero, libs);
-
-  // recompute pinned/parallax positions once fonts, layout & loader settle
-  const refresh=()=>{ libs.ST && libs.ST.refresh(); };
-  window.addEventListener('firit:loaded', ()=>setTimeout(refresh,100));
-  window.addEventListener('load', ()=>setTimeout(refresh,300));
+  navUI();
 })();
