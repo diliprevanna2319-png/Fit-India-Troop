@@ -27,7 +27,7 @@
   <link rel="icon" type="image/png" href="assets/logo-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Structured data -->
@@ -52,47 +52,62 @@
 
   <!-- ============ NAV ============ -->
   <header id="nav" class="nav">
-    <a href="#hero" class="nav__brand" aria-label="Fit India Troop home"><img class="logo--mark" src="assets/logo-mark.png" alt="Fit India Troop" /></a>
-    <nav class="nav__links" id="navLinks">
-      <a href="#about">About</a>
-      <a href="#fitness">Fitness</a>
-      <a href="#crossfit">CrossFit</a>
-      <a href="#recovery">Recovery</a>
-      <a href="#membership">Membership</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a href="#membership" class="btn btn--sm btn--solid nav__cta">Become a Member</a>
-    <button id="navToggle" class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    <div class="nav__bar">
+      <a href="#hero" class="nav__brand" aria-label="Fit India Troop home"><img class="logo--mark" src="assets/logo-mark.png" alt="Fit India Troop" /></a>
+      <nav class="nav__links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#fitness">Fitness</a>
+        <a href="#crossfit">CrossFit</a>
+        <a href="#recovery">Recovery</a>
+        <a href="#membership">Membership</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#membership" class="btn btn--sm btn--solid nav__cta">Become a Member</a>
+      <button id="navToggle" class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    </div>
   </header>
 
   <!-- ============ HERO ============ -->
-  <section id="hero" class="hero">
+  <section id="hero" class="hero noise">
     <div class="hero__bg"></div>
     <div class="hero__vignette"></div>
     <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
     <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
-
     <div class="hero__words" id="heroWords" aria-hidden="true"></div>
 
-    <div class="hero__content">
-      <p class="hero__eyebrow">Tumakuru's Premium Fitness &amp; Performance Center</p>
-      <h1 class="hero__title">
-        <span><em>TRANSFORM</em></span>
-        <span><em>YOUR BODY.</em></span>
-        <span class="grad"><em>BECOME UNSTOPPABLE.</em></span>
-      </h1>
-      <p class="hero__sub">World-class gym, CrossFit training &amp; premium recovery — everything you need under one roof. Build strength. Transform your body. Join Fit India Troop.</p>
-      <div class="hero__cta">
-        <a href="#membership" class="btn btn--solid">Become a Member</a>
-        <a href="#contact" class="btn btn--ghost">Book a Visit</a>
+    <div class="hero__layout">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Tumakuru's Premium Fitness &amp; Performance Center</p>
+        <h1 class="hero__title">
+          <span><em>Transform</em></span>
+          <span><em>Your Body.</em></span>
+          <span class="grad"><em>Become Unstoppable.</em></span>
+        </h1>
+        <p class="hero__sub">World-class gym, CrossFit training &amp; premium recovery — everything you need under one roof.</p>
+        <div class="hero__cta">
+          <a href="#membership" class="btn btn--solid btn--lg">Become a Member</a>
+          <a href="#contact" class="btn btn--ghost btn--lg">Book a Visit <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero__trust">
+          <div><b>8+</b><span>Years of results</span></div>
+          <div><b>2,500+</b><span>Happy members</span></div>
+          <div><b>15+</b><span>Certified trainers</span></div>
+        </div>
       </div>
-      <div class="hero__trust">
-        <div><b>8+</b><span>Years of results</span></div>
-        <div><b>2,500+</b><span>Happy members</span></div>
-        <div><b>15+</b><span>Certified trainers</span></div>
-        <div><b>♨</b><span>Sauna &amp; steam recovery</span></div>
-      </div>
+
+      <aside class="hero__card" aria-label="Try us with a daily pass">
+        <span class="hero__card-kicker">Start today</span>
+        <div class="hero__card-price"><b id="heroPassPrice">₹250</b><span>/ day pass</span></div>
+        <p class="hero__card-note">Experience the full facility — gym floor, cardio &amp; strength zones. No commitment.</p>
+        <ul class="hero__card-list">
+          <li id="heroCardHours">Mon–Sat · Morning &amp; Evening batches</li>
+          <li>Certified coaches on the floor</li>
+          <li>Sauna &amp; steam recovery zone</li>
+        </ul>
+        <a class="btn btn--solid btn--full" id="heroCardWhats" target="_blank" rel="noopener">WhatsApp Us</a>
+        <a class="hero__card-call" id="heroCardCall">or call us directly</a>
+      </aside>
     </div>
 
     <a href="#stats" class="hero__scroll" aria-label="Scroll down">
@@ -145,6 +160,7 @@
 
   <!-- ============ FITNESS ============ -->
   <section id="fitness" class="section split split--fitness">
+    <span class="split__ghost" aria-hidden="true">01</span>
     <div class="split__text">
       <span class="kicker reveal">01 — Fitness</span>
       <h2 class="reveal">Premium <span class="grad">Gym Training</span></h2>
@@ -157,26 +173,42 @@
         <span>Increase Strength</span><span>Improve Stamina</span><span>Burn Fat</span>
         <span>Gain Muscle</span><span>Boost Energy</span><span>Build Healthy Habits</span>
       </div>
+      <a href="#membership" class="split__link reveal">Explore memberships <span aria-hidden="true">→</span></a>
     </div>
-    <div class="split__visual reveal"><div class="split__img" data-gallery-idx="0"></div></div>
+    <div class="split__visual reveal">
+      <div class="split__frame">
+        <div class="split__img" data-gallery-idx="0"></div>
+        <div class="split__chip"><b>120+</b><span>Equipment count</span></div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ CROSSFIT ============ -->
-  <section id="crossfit" class="section split split--rev split--crossfit">
-    <div class="split__text">
-      <span class="kicker reveal">02 — CrossFit</span>
-      <h2 class="reveal">Push Beyond <span class="grad">Your Limits</span></h2>
-      <p class="reveal">Strength, endurance, agility, speed and conditioning in one high-intensity training experience. Our coaches scale every workout to your ability.</p>
-      <ul class="chips reveal">
-        <li>Olympic Lifting</li><li>HIIT Workouts</li><li>Functional Movements</li><li>Strength Circuits</li>
-        <li>Endurance Training</li><li>Conditioning</li><li>Group Coaching</li><li>Performance Tracking</li>
-      </ul>
+  <section id="crossfit" class="band noise">
+    <div class="section split split--rev split--crossfit">
+      <span class="split__ghost" aria-hidden="true">02</span>
+      <div class="split__text">
+        <span class="kicker reveal">02 — CrossFit</span>
+        <h2 class="reveal">Push Beyond <span class="grad">Your Limits</span></h2>
+        <p class="reveal">Strength, endurance, agility, speed and conditioning in one high-intensity training experience. Our coaches scale every workout to your ability.</p>
+        <ul class="chips reveal">
+          <li>Olympic Lifting</li><li>HIIT Workouts</li><li>Functional Movements</li><li>Strength Circuits</li>
+          <li>Endurance Training</li><li>Conditioning</li><li>Group Coaching</li><li>Performance Tracking</li>
+        </ul>
+        <a href="#contact" class="split__link reveal">Book your first session <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="split__visual reveal">
+        <div class="split__frame">
+          <div class="split__img" data-gallery-idx="1"></div>
+          <div class="split__chip"><b>Coach-led</b><span>Group WODs</span></div>
+        </div>
+      </div>
     </div>
-    <div class="split__visual reveal"><div class="split__img" data-gallery-idx="1"></div></div>
   </section>
 
   <!-- ============ RECOVERY ============ -->
-  <section id="recovery" class="section split split--rev recovery">
+  <section id="recovery" class="section split recovery">
+    <span class="split__ghost" aria-hidden="true">03</span>
     <div class="split__text">
       <span class="kicker reveal">03 — Recovery Zone</span>
       <h2 class="reveal">Recover <span class="grad">Stronger</span></h2>
@@ -185,8 +217,14 @@
         <li>Steam Room</li><li>Sauna</li><li>Reduced Muscle Fatigue</li>
         <li>Stress Relief</li><li>Better Circulation</li><li>Deep Relaxation</li>
       </ul>
+      <a href="#membership" class="split__link reveal">See plans with recovery access <span aria-hidden="true">→</span></a>
     </div>
-    <div class="split__visual reveal"><div class="split__img" data-gallery-idx="2"></div></div>
+    <div class="split__visual reveal">
+      <div class="split__frame">
+        <div class="split__img" data-gallery-idx="2"></div>
+        <div class="split__chip"><b>Sauna + Steam</b><span>Premium recovery</span></div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ PROGRAMS ============ -->
@@ -200,15 +238,17 @@
   </section>
 
   <!-- ============ MEMBERSHIP ============ -->
-  <section id="membership" class="section membership">
-    <div class="section__head reveal">
-      <span class="kicker">Membership Plans</span>
-      <h2>Choose Your <span class="grad">Fitness Journey</span></h2>
-      <p>Transparent pricing, no hidden fees. Pick the plan that fits your commitment.</p>
+  <section id="membership" class="band band--membership noise">
+    <div class="section membership">
+      <div class="section__head reveal">
+        <span class="kicker">Membership Plans</span>
+        <h2>Choose Your <span class="grad">Fitness Journey</span></h2>
+        <p>Transparent pricing, no hidden fees. Pick the plan that fits your commitment.</p>
+      </div>
+      <div class="plans" id="plansGrid"></div>
+      <p class="plans__note" id="plansNote"></p>
+      <div class="plans__extra" id="plansExtra"></div>
     </div>
-    <div class="plans" id="plansGrid"></div>
-    <p class="plans__note" id="plansNote"></p>
-    <div class="plans__extra" id="plansExtra"></div>
   </section>
 
   <!-- ============ TESTIMONIALS ============ -->
@@ -218,12 +258,15 @@
       <h2>Real Members. <span class="grad">Real Results.</span></h2>
       <p>Every transformation begins with a decision.</p>
     </div>
-    <div class="stories__viewport"><div class="stories__track" id="storiesTrack"></div></div>
-    <div class="stories__dots" id="storiesDots"></div>
+    <div class="stories__shell reveal">
+      <span class="stories__mark" aria-hidden="true">“</span>
+      <div class="stories__viewport"><div class="stories__track" id="storiesTrack"></div></div>
+      <div class="stories__dots" id="storiesDots"></div>
+    </div>
   </section>
 
   <!-- ============ GALLERY ============ -->
-  <section id="gallery" class="section gallery">
+  <section id="gallery" class="section section--wide gallery">
     <div class="section__head reveal">
       <span class="kicker">Gallery</span>
       <h2>Experience The <span class="grad">Energy</span></h2>
@@ -242,61 +285,79 @@
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section id="contact" class="section contact">
-    <div class="contact__grid">
-      <div class="contact__info">
-        <span class="kicker reveal">Contact</span>
-        <h2 class="reveal">Start Your Fitness <span class="grad">Journey Today</span></h2>
-        <p class="reveal">Visit us, call us, or drop a message — we'll help you pick the perfect program.</p>
-
-        <ul class="contact__list">
-          <li class="reveal"><span>📍 Location</span><a data-cfg="mapLink" target="_blank" rel="noopener" id="cAddress"></a></li>
-          <li class="reveal"><span>📞 Call</span><a data-cfg="phone1" id="cPhone1"></a> · <a data-cfg="phone2" id="cPhone2"></a></li>
-          <li class="reveal"><span>✉️ Email</span><a data-cfg="email" id="cEmail"></a></li>
-          <li class="reveal"><span>🅿️ Parking</span><em id="cParking"></em></li>
-        </ul>
-
-        <div class="hours reveal">
-          <h4>Business Hours</h4>
-          <ul id="hoursList"></ul>
-        </div>
-
-        <div class="contact__actions reveal">
-          <a class="btn btn--solid" data-cfg="whatsapp" id="cWhats">WhatsApp Us</a>
-          <a class="btn btn--ghost" data-cfg="call" id="cCall">Call Now</a>
-        </div>
-        <div class="socials reveal" id="socials"></div>
+  <section id="contact" class="band noise">
+    <div class="section contact">
+      <div class="section__head reveal">
+        <span class="kicker">Contact</span>
+        <h2>Start Your Fitness <span class="grad">Journey Today</span></h2>
+        <p>Visit us, call us, or drop a message — we'll help you pick the perfect program.</p>
       </div>
 
-      <form class="contact__form reveal" id="contactForm" novalidate>
-        <div class="field"><label>Name</label><input name="name" required /><small></small></div>
-        <div class="field"><label>Phone Number</label><input name="phone" required inputmode="tel" /><small></small></div>
-        <div class="field"><label>Email</label><input name="email" type="email" required /><small></small></div>
-        <div class="field">
-          <label>Fitness Goal</label>
-          <select name="goal">
-            <option>Weight / Fat Loss</option><option>Muscle Gain</option><option>General Fitness</option>
-            <option>Sports Performance</option><option>Strength Training</option><option>Recovery</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Preferred Program</label>
-          <select name="program">
-            <option>Gym Training</option><option>CrossFit</option><option>Functional Training</option>
-            <option>Personal Training</option><option>Women's Fitness</option>
-          </select>
-        </div>
-        <div class="field field--full"><label>Message</label><textarea name="message" rows="3"></textarea></div>
-        <button type="submit" class="btn btn--solid btn--full">Join Now</button>
-        <p class="form__success" id="formSuccess">✔ Thank you! We'll reach out to you shortly.</p>
-      </form>
-    </div>
+      <div class="contact__grid">
+        <div class="contact__info reveal">
+          <ul class="contact__list">
+            <li><span>Location</span><a data-cfg="mapLink" target="_blank" rel="noopener" id="cAddress"></a></li>
+            <li><span>Call</span><span class="contact__phones"><a data-cfg="phone1" id="cPhone1"></a> · <a data-cfg="phone2" id="cPhone2"></a></span></li>
+            <li><span>Email</span><a data-cfg="email" id="cEmail"></a></li>
+            <li><span>Parking</span><em id="cParking"></em></li>
+          </ul>
 
-    <div class="map reveal">
-      <iframe id="mapFrame" title="Fit India Troop location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-      <div class="map__actions">
-        <a class="btn btn--sm btn--ghost" data-cfg="mapOpen" id="mapOpen" target="_blank" rel="noopener">Open in Google Maps</a>
-        <a class="btn btn--sm btn--ghost" data-cfg="directions" id="mapDir" target="_blank" rel="noopener">Get Directions</a>
+          <div class="hours">
+            <h4>Business Hours</h4>
+            <ul id="hoursList"></ul>
+          </div>
+
+          <div class="contact__actions">
+            <a class="btn btn--solid" data-cfg="whatsapp" id="cWhats">WhatsApp Us</a>
+            <a class="btn btn--ghost" data-cfg="call" id="cCall">Call Now</a>
+          </div>
+          <div class="socials" id="socials"></div>
+        </div>
+
+        <form class="contact__form reveal" id="contactForm" novalidate>
+          <h3 class="contact__form-title">Book Your First Visit</h3>
+          <p class="contact__form-sub">Tell us your goal — we'll call you back with the right program.</p>
+          <div class="field"><label for="fName">Name</label><input id="fName" name="name" required autocomplete="name" /><small></small></div>
+          <div class="field"><label for="fPhone">Phone Number</label><input id="fPhone" name="phone" required inputmode="tel" autocomplete="tel" /><small></small></div>
+          <div class="field field--full"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" required autocomplete="email" /><small></small></div>
+          <div class="field">
+            <label for="fGoal">Fitness Goal</label>
+            <select id="fGoal" name="goal">
+              <option>Weight / Fat Loss</option><option>Muscle Gain</option><option>General Fitness</option>
+              <option>Sports Performance</option><option>Strength Training</option><option>Recovery</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fProgram">Preferred Program</label>
+            <select id="fProgram" name="program">
+              <option>Gym Training</option><option>CrossFit</option><option>Functional Training</option>
+              <option>Personal Training</option><option>Women's Fitness</option>
+            </select>
+          </div>
+          <div class="field field--full"><label for="fMsg">Message</label><textarea id="fMsg" name="message" rows="3"></textarea></div>
+          <button type="submit" class="btn btn--solid btn--full">Join Now</button>
+          <p class="form__success" id="formSuccess">✔ Thank you! We'll reach out to you shortly.</p>
+        </form>
+      </div>
+
+      <div class="map reveal">
+        <iframe id="mapFrame" title="Fit India Troop location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="map__actions">
+          <a class="btn btn--sm btn--ghost" data-cfg="mapOpen" id="mapOpen" target="_blank" rel="noopener">Open in Google Maps</a>
+          <a class="btn btn--sm btn--ghost" data-cfg="directions" id="mapDir" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="cta-band noise">
+    <div class="cta-band__inner">
+      <h2 class="reveal">Ready To Become <span class="grad">Unstoppable?</span></h2>
+      <p class="reveal">Your transformation starts with one visit. Train. Recover. Perform. Repeat.</p>
+      <div class="cta-band__actions reveal">
+        <a href="#membership" class="btn btn--solid btn--lg">Become a Member</a>
+        <a href="#contact" class="btn btn--ghost btn--lg">Book a Visit</a>
       </div>
     </div>
   </section>

@@ -11,6 +11,28 @@ const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
 const el = (tag,cls,html)=>{ const n=document.createElement(tag); if(cls)n.className=cls; if(html!=null)n.innerHTML=html; return n; };
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* stroke icon set (24px grid) — keys referenced by why tiles + program cards */
+const ICONS={
+  dumbbell:'<path d="M6.5 6.5v11M17.5 6.5v11M3 9v6M21 9v6M6.5 12h11"/>',
+  bars:'<path d="M5 20v-6M10 20V9M15 20V4M20 20v-8"/>',
+  flame:'<path d="M12 3c1.2 3-3 5.5-3 9.5a3.5 3.5 0 0 0 7 0c0-1.4-.4-2.4-1-3.5-.5 1-1 1.5-1.6 1.6C14 8.5 14.8 5.5 12 3Z"/>',
+  timer:'<circle cx="12" cy="13" r="7"/><path d="M12 10v4M9 3h6"/>',
+  kettlebell:'<path d="M9 9a3 3 0 0 1 6 0"/><circle cx="12" cy="14.5" r="5.5"/>',
+  bolt:'<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/>',
+  heart:'<path d="M20.8 8.6a5 5 0 0 0-8.8-2.3A5 5 0 0 0 3.2 8.6C3.2 13 12 20 12 20s8.8-7 8.8-11.4Z"/>',
+  target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+  sparkle:'<path d="M12 3v18M5.2 7.5l13.6 9M18.8 7.5l-13.6 9"/>',
+  leaf:'<path d="M4 20C6 8 14 4 21 4c-1 8-6 15-17 16Z"/><path d="M4 20c4-6 8-9 13-12"/>',
+  award:'<circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21l4.5-2.5L16.5 21 15 13.5"/>',
+  steam:'<path d="M8 3.5c-1.5 2 1.5 3.5 0 5.5M12 3.5c-1.5 2 1.5 3.5 0 5.5M16 3.5c-1.5 2 1.5 3.5 0 5.5"/><path d="M5 13h14M6.5 13v4a3.5 3.5 0 0 0 3.5 3.5h4a3.5 3.5 0 0 0 3.5-3.5v-4"/>',
+  clipboard:'<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6M9 10h6M9 14h4"/>',
+  users:'<circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 15c2.5 0 4.5 2 4.5 5"/>',
+  tag:'<path d="M3 11 12 2h9v9l-9 9-9-9Z"/><circle cx="16.5" cy="7.5" r="1.5"/>'
+};
+const icon=k=>`<span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24">${ICONS[k]||ICONS.dumbbell}</svg></span>`;
+/* map the emoji stored in config.js programs to icon keys (config stays untouched) */
+const EMOJI_ICON={'💪':'dumbbell','🏋️':'bars','🔥':'flame','⚡':'timer','🤸':'kettlebell','🥊':'bolt','🏃':'heart','🎯':'target','🌸':'sparkle','🧘':'leaf'};
+
 /* preload an image; set as background only if it exists, else keep placeholder */
 function setBg(node, url){
   if(!node) return;
@@ -40,6 +62,14 @@ function hydrate(){
   $('#mapFrame').src=C.contact.mapEmbed;
   $('#year').textContent=new Date().getFullYear();
 
+  /* hero conversion card — driven by the same config values */
+  const dayPass=C.plans.find(p=>/day/i.test(p.name))||C.plans[0];
+  $('#heroPassPrice').textContent=dayPass.price;
+  $('#heroCardHours').textContent=`${C.hours[0].day} · ${C.hours[0].time}`;
+  $('#heroCardWhats').href=`https://wa.me/${C.contact.whatsapp}?text=Hi%20Fit%20India%20Troop,%20I'd%20like%20to%20try%20a%20day%20pass!`;
+  $('#heroCardCall').href=tel(C.contact.phonePrimary);
+  $('#heroCardCall').textContent=`or call ${C.contact.phonePrimary}`;
+
   /* hours */
   $('#hoursList').append(...C.hours.map(h=>el('li',null,`<span>${h.day}</span><b>${h.time}</b>`)));
 
@@ -68,14 +98,16 @@ function hydrate(){
 
   /* why tiles */
   const why=[
-    ['🏋️','Premium Equipment'],['🎓','Certified Trainers'],['🥊','CrossFit Training'],['🔥','Body Transformation'],['♨️','Sauna & Steam'],
-    ['🤸','Functional Zone'],['📋','Personalised Plans'],['🎯','Personal Coaching'],['🤝','Friendly Community'],['💰','Affordable Plans']
+    ['dumbbell','Premium Equipment'],['award','Certified Trainers'],['bolt','CrossFit Training'],['flame','Body Transformation'],['steam','Sauna & Steam'],
+    ['kettlebell','Functional Zone'],['clipboard','Personalised Plans'],['target','Personal Coaching'],['users','Friendly Community'],['tag','Affordable Plans']
   ];
-  $('#whyGrid').append(...why.map(([i,t])=>el('div','tile reveal',`<div class="tile__ic">${i}</div><h4>${t}</h4>`)));
+  $('#whyGrid').append(...why.map(([k,t])=>el('div','tile reveal',`${icon(k)}<h4>${t}</h4>`)));
 
   /* programs */
-  $('#programsGrid').append(...C.programs.map(p=>
-    el('div','pcard reveal',`<div class="pcard__ic">${p.icon}</div><h4>${p.title}</h4><p>${p.desc}</p>`)));
+  $('#programsGrid').append(...C.programs.map((p,i)=>
+    el('div','pcard reveal',
+      `<span class="pcard__num" aria-hidden="true">${String(i+1).padStart(2,'0')}</span>
+       ${icon(EMOJI_ICON[p.icon]||'dumbbell')}<h4>${p.title}</h4><p>${p.desc}</p>`)));
 
   /* plans */
   $('#plansGrid').append(...C.plans.map(p=>{
@@ -236,8 +268,11 @@ function hero(){
       });
     },{passive:true});
   }
-  /* entrance choreography */
-  requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('is-ready')));
+  /* entrance choreography — rAF for the first painted frame, timeout as a
+     safety net for backgrounded/throttled tabs */
+  const ready=()=>document.body.classList.add('is-ready');
+  requestAnimationFrame(()=>requestAnimationFrame(ready));
+  setTimeout(ready,900);
 }
 
 /* =========================== NAV: scrolled state, progress, scrollspy, mobile =========================== */
@@ -256,7 +291,7 @@ function navUI(){
     document.body.classList.toggle('locked',open);
   };
   toggle.addEventListener('click',()=>setMenu(!links.classList.contains('open')));
-  $$('#navLinks a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+  $$('#navLinks a').forEach((a,i)=>{ a.style.setProperty('--i',String(i)); a.addEventListener('click',()=>setMenu(false)); });
   addEventListener('keydown',e=>{ if(e.key==='Escape') setMenu(false); });
 
   $$('a[href^="#"]').forEach(a=>{
