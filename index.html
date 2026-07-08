@@ -13,11 +13,16 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.fitindiatroop.com/" />
   <meta property="og:title" content="Fit India Troop — Premium Gym, CrossFit & Recovery in Tumakuru" />
   <meta property="og:description" content="World-class gym, CrossFit training & premium recovery — all under one roof in Tumakuru." />
-  <meta property="og:image" content="assets/images/gym-1.jpg" />
+  <meta property="og:image" content="https://fit-india-troop.netlify.app/assets/images/gym-1.jpg" />
   <meta property="og:site_name" content="Fit India Troop" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fit India Troop — Premium Gym, CrossFit & Recovery in Tumakuru" />
+  <meta name="twitter:description" content="World-class gym, CrossFit training & premium recovery — all under one roof in Tumakuru." />
+
+  <link rel="preload" as="image" href="assets/images/gym-1.jpg" />
 
   <link rel="icon" type="image/png" href="assets/logo-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,19 +47,8 @@
 </head>
 <body>
 
-  <!-- ============ LOADER ============ -->
-  <div id="loader" class="loader">
-    <div class="loader__inner">
-      <img class="loader__logo" src="assets/logo.png" alt="Fit India Troop" />
-      <div class="loader__bar"><span id="loaderFill" class="loader__fill"></span></div>
-      <div class="loader__pct"><span id="loaderPct">0</span>%</div>
-      <p class="loader__tag">TRAIN · RECOVER · PERFORM</p>
-    </div>
-  </div>
-
-  <!-- ============ PROGRESS + CURSOR ============ -->
-  <div id="scrollProgress" class="scroll-progress"></div>
-  <div id="cursorGlow" class="cursor-glow"></div>
+  <!-- ============ PROGRESS ============ -->
+  <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
 
   <!-- ============ NAV ============ -->
   <header id="nav" class="nav">
@@ -69,27 +63,35 @@
       <a href="#contact">Contact</a>
     </nav>
     <a href="#membership" class="btn btn--sm btn--solid nav__cta">Become a Member</a>
-    <button id="navToggle" class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button id="navToggle" class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   </header>
 
   <!-- ============ HERO ============ -->
   <section id="hero" class="hero">
     <div class="hero__bg"></div>
     <div class="hero__vignette"></div>
+    <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
 
     <div class="hero__words" id="heroWords" aria-hidden="true"></div>
 
     <div class="hero__content">
       <p class="hero__eyebrow">Tumakuru's Premium Fitness &amp; Performance Center</p>
       <h1 class="hero__title">
-        <span>TRANSFORM</span>
-        <span>YOUR BODY.</span>
-        <span class="grad">BECOME UNSTOPPABLE.</span>
+        <span><em>TRANSFORM</em></span>
+        <span><em>YOUR BODY.</em></span>
+        <span class="grad"><em>BECOME UNSTOPPABLE.</em></span>
       </h1>
       <p class="hero__sub">World-class gym, CrossFit training &amp; premium recovery — everything you need under one roof. Build strength. Transform your body. Join Fit India Troop.</p>
       <div class="hero__cta">
         <a href="#membership" class="btn btn--solid">Become a Member</a>
         <a href="#contact" class="btn btn--ghost">Book a Visit</a>
+      </div>
+      <div class="hero__trust">
+        <div><b>8+</b><span>Years of results</span></div>
+        <div><b>2,500+</b><span>Happy members</span></div>
+        <div><b>15+</b><span>Certified trainers</span></div>
+        <div><b>♨</b><span>Sauna &amp; steam recovery</span></div>
       </div>
     </div>
 
@@ -313,12 +315,12 @@
     </div>
     <div class="footer__bottom">
       <span>© <span id="year"></span> Fit India Troop. All rights reserved.</span>
-      <span class="footer__legal"><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+      <span class="footer__legal"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a></span>
     </div>
   </footer>
 
   <!-- ============ LIGHTBOX ============ -->
-  <div class="lightbox" id="lightbox"><button class="lightbox__close" id="lbClose">✕</button><img id="lbImg" alt="" /></div>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer"><button class="lightbox__close" id="lbClose" aria-label="Close image viewer">✕</button><img id="lbImg" alt="Fit India Troop gallery photo — enlarged view" /></div>
 
   <script type="module" src="js/main.js"></script>
 </body>
